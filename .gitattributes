@@ -1,0 +1,4 @@
+# Tooling scripts (plotting, run drivers, data validation) — not the deliverable.
+# Exclude from GitHub language stats so the repo reads as primarily C++.
+md-mpi/scripts/*.py  linguist-vendored
+md-mpi/scripts/*.sh  linguist-vendored
