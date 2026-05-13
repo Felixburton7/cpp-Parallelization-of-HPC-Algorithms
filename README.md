@@ -1,51 +1,67 @@
 # MPI Parallelisation of Molecular Dynamics
 
-A C++17 / MPI molecular dynamics solver, written as part of the MPhil in Scientific Computing at the University of Cambridge. The code implements a Velocity-Verlet integrator for both a 1D anharmonic toy model and a 3D Lennard-Jones fluid, and is parallelised with a domain-decomposed force computation using MPI.
+> **Graded 93%.** Selected to feed into an ongoing research publication.
+
+A C++17 / MPI molecular-dynamics solver written for the MPhil in Scientific Computing at the University of Cambridge. Velocity-Verlet integration for a 1D anharmonic oscillator and a 3D Lennard-Jones fluid, with a domain-decomposed parallel force computation.
 
 **Full write-up:** [WA2_MPI_Parallelisation_of_Molecular_Dynamics.pdf](WA2_MPI_Parallelisation_of_Molecular_Dynamics.pdf)
 
-## Highlights
+---
 
-- C++17, MPI, domain-decomposed pair-force computation
-- Velocity-Verlet integration validated against analytical and published reference data
-- Reproduces the Rahman (1964) radial distribution function for liquid argon
+## What's in here
+
+- C++17 + MPI, domain-decomposed pair-force computation
+- Velocity-Verlet integrator, validated to second-order accuracy
+- Reproduces Rahman's 1964 radial distribution function for liquid argon
 - Strong and problem-size scaling measured on a multi-node HPC cluster
 
-## Selected Results
+---
 
-### Velocity-Verlet convergence (1D anharmonic oscillator)
+## Results
 
-Energy-drift error scales as O(Δt²), confirming the integrator is second-order accurate.
+### 1. Integrator is second-order accurate
 
-![Verlet convergence](results/results1_figure3_convergence.png)
+Energy-drift error scales as O(Δt²) on the 1D anharmonic oscillator — confirming Velocity-Verlet is implemented correctly.
 
-### Lennard-Jones energy conservation
+<p align="center">
+  <img src="results/results1_figure3_convergence.png" width="65%" alt="Verlet convergence" />
+</p>
 
-Total energy is conserved over a 100-step production run of the LJ fluid; kinetic and potential energy exchange cleanly.
+### 2. Lennard-Jones fluid — physics validation
 
-![LJ energy](results/results2_figure6_lj_energy.png)
+Energy is conserved over the production run, and the simulated RDF matches [Rahman (1964)](https://doi.org/10.1103/PhysRev.136.A405) for liquid argon.
 
-### Radial distribution function vs Rahman (1964)
+<table>
+  <tr>
+    <td width="50%"><img src="results/results2_figure6_lj_energy.png" alt="LJ energy conservation" /></td>
+    <td width="50%"><img src="results/results2_figure8_rdf_rahman1964.png" alt="RDF vs Rahman 1964" /></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Energy conservation over 100-step production run</sub></td>
+    <td align="center"><sub>Radial distribution function vs Rahman (1964)</sub></td>
+  </tr>
+</table>
 
-The simulated RDF for liquid argon reproduces the structure reported in [Rahman, *Phys. Rev.* **136**, A405 (1964)](https://doi.org/10.1103/PhysRev.136.A405).
+### 3. Parallel scaling
 
-![RDF vs Rahman 1964](results/results2_figure8_rdf_rahman1964.png)
+Linear cost growth with N at fixed process count, and strong-scaling speedup up to 64 MPI processes with a breakdown showing where communication starts to dominate.
 
-### Problem-size scaling (fixed p = 16)
+<table>
+  <tr>
+    <td width="50%"><img src="results/results3_figure9ab_problem_size_scaling.png" alt="Problem-size scaling" /></td>
+    <td width="50%"><img src="results/results3_figure10abc_strong_scaling.png" alt="Strong scaling" /></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Problem-size scaling at fixed p = 16</sub></td>
+    <td align="center"><sub>Strong scaling, speedup, and cost breakdown</sub></td>
+  </tr>
+</table>
 
-Wall-clock cost grows linearly with the number of particles N at fixed process count, as expected for an O(N) cutoff-based force evaluation.
+---
 
-![Problem-size scaling](results/results3_figure9ab_problem_size_scaling.png)
+## Source layout
 
-### Strong scaling
-
-Speedup and parallel efficiency on up to 64 MPI processes, with the cost breakdown showing where communication starts to dominate.
-
-![Strong scaling](results/results3_figure10abc_strong_scaling.png)
-
-## Source Layout
-
-The solver, tests, and scripts live under [md-mpi/](md-mpi/). See [md-mpi/README.md](md-mpi/README.md) for build, test, and run instructions.
+The solver, tests, and scripts live under [md-mpi/](md-mpi/). See [md-mpi/README.md](md-mpi/README.md) for full build, test, and run instructions.
 
 ```
 md-mpi/
@@ -56,7 +72,7 @@ md-mpi/
 └── Makefile
 ```
 
-## Build And Run
+## Build and run
 
 ```bash
 cd md-mpi
