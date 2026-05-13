@@ -1,6 +1,6 @@
 # WA2: MPI Parallelisation of Molecular Dynamics
 
-This repository contains my C++17/MPI molecular dynamics code for Written Assignment 2, together with the tests, plotting scripts, and submission packaging.
+This repository contains my C++17/MPI molecular dynamics code for Written Assignment 2, together with the tests, plotting scripts, and submission packaging .
 
 ## Repository Layout
 
@@ -20,7 +20,7 @@ You will need:
 
 ## Build And Test
 
-From the repository root, run:
+From the repository root,  run:
 
 ```bash
 make clean

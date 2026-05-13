@@ -1,0 +1,21 @@
+# Internal / non-public working folders
+AI/
+cerberus/
+related/
+test_tar/
+writeup/
+
+# Build artefacts
+md-mpi/build/
+md-mpi/out/
+md-mpi/4316J_wa2/
+md-mpi/4316J_wa2.tar.gz
+*.o
+*.d
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
