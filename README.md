@@ -15,45 +15,13 @@ A C++17 / MPI molecular-dynamics solver written for the Centre for Scientific Co
 
 ---
 
-## Results
+## Parallel scaling
 
-### 1. Integrator is second-order accurate
-
-Energy-drift error scales as O(Δt²) on the 1D anharmonic oscillator — confirming Velocity-Verlet is implemented correctly.
+Strong-scaling speedup and parallel efficiency on up to 64 MPI processes, with a cost breakdown showing where communication starts to dominate. Full validation (Verlet convergence, energy conservation, RDF vs Rahman 1964) is in the [write-up](WA2_MPI_Parallelisation_of_Molecular_Dynamics.pdf).
 
 <p align="center">
-  <img src="results/results1_figure3_convergence.png" width="65%" alt="Verlet convergence" />
+  <img src="results/results3_figure10abc_strong_scaling.png" width="85%" alt="Strong scaling" />
 </p>
-
-### 2. Lennard-Jones fluid — physics validation
-
-Energy is conserved over the production run, and the simulated RDF matches [Rahman (1964)](https://doi.org/10.1103/PhysRev.136.A405) for liquid argon.
-
-<table>
-  <tr>
-    <td width="50%"><img src="results/results2_figure6_lj_energy.png" alt="LJ energy conservation" /></td>
-    <td width="50%"><img src="results/results2_figure8_rdf_rahman1964.png" alt="RDF vs Rahman 1964" /></td>
-  </tr>
-  <tr>
-    <td align="center"><sub>Energy conservation over 100-step production run</sub></td>
-    <td align="center"><sub>Radial distribution function vs Rahman (1964)</sub></td>
-  </tr>
-</table>
-
-### 3. Parallel scaling
-
-Linear cost growth with N at fixed process count, and strong-scaling speedup up to 64 MPI processes with a breakdown showing where communication starts to dominate.
-
-<table>
-  <tr>
-    <td width="50%"><img src="results/results3_figure9ab_problem_size_scaling.png" alt="Problem-size scaling" /></td>
-    <td width="50%"><img src="results/results3_figure10abc_strong_scaling.png" alt="Strong scaling" /></td>
-  </tr>
-  <tr>
-    <td align="center"><sub>Problem-size scaling at fixed p = 16</sub></td>
-    <td align="center"><sub>Strong scaling, speedup, and cost breakdown</sub></td>
-  </tr>
-</table>
 
 ---
 
