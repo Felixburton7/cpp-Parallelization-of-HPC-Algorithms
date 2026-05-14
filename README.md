@@ -1,6 +1,6 @@
 # MPI Parallelisation of Molecular Dynamics
 
-A C++17 / MPI molecular-dynamics solver written for the Centre for Scientific Computing at the University of Cambridge. Velocity-Verlet integration for a 1D anharmonic oscillator and a 3D Lennard-Jones fluid, with a domain-decomposed parallel force computation.
+A C++17 / MPI molecular-dynamics solver written for the Centre for Scientific Computing at the University of Cambridge. Velocity-Verlet integration for a 1D anharmonic oscillator and a 3D Lennard-Jones fluid, with a domain-decomposed parallel force computation. Scored 93% grade. 
 
 **Full write-up:** [WA2_MPI_Parallelisation_of_Molecular_Dynamics.pdf](WA2_MPI_Parallelisation_of_Molecular_Dynamics.pdf)
 
